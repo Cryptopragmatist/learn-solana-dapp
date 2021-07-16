@@ -16,7 +16,16 @@ const Connect = () => {
     const url = getNodeRpcURL();
     
     // Create a connection
+    const connection = new Connection(url);
     // Get the API version
+    connection.getVersion()
+    .then(version => {
+      setVersion(version)
+    }
+      )
+    .catch(err => {
+      console.error(err)
+    })
     // and save it to the component's state
   }
 
