@@ -7,12 +7,15 @@ const { Text, Paragraph } = Typography;
 const Account = ({ keypair, setKeypair }) => {
   const generateKeypair = () => {
     // Generate a Keypair
+
+    const keypair = Keypair.generate();
     // Save it to <App />'s state
+    setKeypair(keypair);
+    console.log(keypair);
   }
 
   // parse the address (as a string) from the keypair object
-  const publicKeyStr = "TBD";
-
+  const publicKeyStr = keypair && keypair.publicKey.toString();
   return (
     <Col>
       <Button type="primary" onClick={generateKeypair} style={{ marginBottom: "20px" }}>Generate a Keypair</Button>
