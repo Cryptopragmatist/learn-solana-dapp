@@ -12,6 +12,10 @@ const Fund = () => {
     const url = process.env.REACT_APP_DEVNET_URL;
     const connection = new Connection(url);
     
+    const address = new PublicKey(value);
+    connection.requestAirdrop(address,100000000000000)
+    .then((res) => setIsFunded(true))
+    .catch((err) => console.log(err))
     // Create a PublicKey address from the input value
     // Call requestAirdrop
     // On success, set isFunded to true
