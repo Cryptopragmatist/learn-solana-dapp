@@ -15,6 +15,17 @@ const Balance = () => {
     const url = getNodeRpcURL();
     const connection = new Connection(url);
     
+    const publicKey =  new PublicKey(value);
+    connection.getBalance(publicKey)
+    .then((balance) => {
+      setBalance(balance / DECIMAL_OFFSET);
+    })
+    .catch((err) => {
+      console.log(err);
+      setBalance(null);
+    });
+  
+  
     // Create a PublicKey from the input value
     // Call getBalance
     // Set balance using setBalance and DECIMAL_OFFSET

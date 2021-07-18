@@ -57,10 +57,30 @@ const Transfer = ({ keypair }) => {
     setFetching(true);
 
     // Create a transaction
+    const transaction = new Transaction().add(instructions);
     // Add instructions
+
+    setTxSignature(null);
+    setFetching(true);
+
+   
     // Call sendAndConfirmTransaction
+    sendAndConfirmTransaction(
+      connection,
+      transaction,
+      signers,
+    
+    ).then((signature) => {
+      setTxSignature(signature)
+      setFetching(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      setFetching(false);
+    })
+};
     // On success, call setTxSignature and setFetching
-  };
+
 
   const explorerUrl = getTxExplorerURL(txSignature);
 
